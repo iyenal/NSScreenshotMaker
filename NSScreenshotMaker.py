@@ -15,7 +15,6 @@ import zipfile
 import tempfile
 from sys import exit
 from PIL import Image
-from AnyQt import QtCore
 from hashlib import sha256
 from datetime import datetime
 #No need UI imports we will command that directly from a dotNet frontend
@@ -48,9 +47,6 @@ settings_json = {
 	"direction": "ltr"
 }
 
-#From my testing, piexif's _dump._get_thumbnail() returns an invalid thumbnail for the Switch (it shows a "?"). What we can do though is replace it with this dirty fix.
-#There's probably a better way to do it, like using a different library, but eh, it works™ ¯\_(ツ)_/¯
-#From StackOverflow (Monkey Patching): https://stackoverflow.com/questions/10429547/how-to-change-a-function-in-existing-3rd-party-library-in-python
 piexif._dump._get_thumbnail = lambda jpeg: jpeg #Return it as it is, no need to modify it.
 
 def resizeImage(path, sizeX, sizeY, state, secondFilePath):
@@ -120,6 +116,8 @@ class FirstRun(BaseWidget):
 		self._firstrunlabel = ControlLabel("Hello! It looks like this is your first time\nrunning the app. Please go to the settings\nand fill the encryption key before using\nthe tool. Then, simply drag and drop your\nfiles in the centre of the app and press\n\"Go!\"")
 		self.formset = [("_firstrunlabel"), (" "), (" ")]
 
+#Sure we broken a lot of UI dependencies but better to work on a cleaner code base for productivity
+		
 class NSScreenshotMakerGUI(BaseWidget):
 	def __init__(self, *args, **kwargs):
 		global games_json
@@ -147,6 +145,9 @@ class NSScreenshotMakerGUI(BaseWidget):
 		self._imagelist._form.setRootIndex(model.setRootPath(self._tmpinputfolder))
 		self._imagelist._form.setIconSize(QtCore.QSize(32, 32))
 		self.formset=[("_combolabel", "_combo", "_settingsbutton"), "_imagelist" , "_runbutton"]
+		
+		
+		#First run initialization we'll see that after
 		self._firstrunpanel = ControlDockWidget()
 		self._firstrunpanel.hide()
 		self._firstrunwin = FirstRun()
@@ -155,6 +156,8 @@ class NSScreenshotMakerGUI(BaseWidget):
 			self._firstrunpanel.value = self._firstrunwin
 			self._firstrunpanel.show()
 			self._firstrunwin.show()
+			
+			
 		self._settingspanel = ControlDockWidget()
 		self._settingspanel.hide()
 		self._settingswin = SettingsWindow()
