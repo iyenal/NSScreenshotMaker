@@ -1,15 +1,7 @@
-#!/usr/bin/env python3
-#   _  __________                         __        __  __  ___     __          
-#  / |/ / __/ __/__________ ___ ___  ___ / /  ___  / /_/  |/  /__ _/ /_____ ____
-# /    /\ \_\ \/ __/ __/ -_) -_) _ \(_-</ _ \/ _ \/ __/ /|_/ / _ `/  '_/ -_) __/
-#/_/|_/___/___/\__/_/  \__/\__/_//_/___/_//_/\___/\__/_/  /_/\_,_/_/\_\\__/_/  
-#Copyright (c) 2018 cheuble (https://github.com/cheuble)
-#All rights reserved.
-#
-#This work is licensed under the terms of the MIT license.
-#For a copy, see <https://opensource.org/licenses/MIT>.
 
-#http://switchbrew.org/index.php?title=Capture_services#Notes for more info.
+#Original code Copyright (c) 2018 cheuble (https://github.com/cheuble)
+#Modified version iyenal, as IDStudio liability
+#All rights reserved to their respective owners.
 
 import os
 import io
