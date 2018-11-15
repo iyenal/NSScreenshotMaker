@@ -1,3 +1,6 @@
+//Don't try to compile that, it is just a draft!
+//At least we escaped from Python ~~now let's make that in Go~~ lmao jk
+
 
 using os;
 using io;
@@ -207,6 +210,8 @@ public static class nsmp {
         
         public FirstRun(Hashtable kwargs, params object [] args)
             : base("First Run Popup") {
+                
+            //Make that not hard-writed but better adapted to user dialog size
             this._firstrunlabel = ControlLabel("Hello! It looks like this is your first time\nrunning the app. Please go to the settings\nand fill the encryption key before using\nthe tool. Then, simply drag and drop your\nfiles in the centre of the app and press\n\"Go!\"");
             this.formset = new List<object> {
                 "_firstrunlabel",
@@ -221,10 +226,12 @@ public static class nsmp {
         
         public NSScreenshotMakerGUI(Hashtable kwargs, params object [] args) {
             this._tmpinputfolder = tempfile.mkdtemp();
-            this._settingsbutton = ControlButton("⚙️");
+            this._settingsbutton = ControlButton("⚙️"); //wtf CS will not like that
             this._settingsbutton.value = this.openSettings;
             this._runbutton = ControlButton("Go!");
             this._runbutton.value = this.go;
+            
+            //We don't care
             this._combo = ControlCombo(helptext: "The game the Switch will think the screenshot is from");
             this.gameslist = games_json;
             foreach (var k in this.gameslist) {
@@ -232,6 +239,8 @@ public static class nsmp {
             }
             this._combo.add_item("Custom", "Custom");
             this._combolabel = ControlLabel("Game ID", helptext: "The game the Switch will think the screenshot is from");
+            //We don't care
+            
             this._imagelist = ControlFilesTree();
             this._imagelist._form.setDragEnabled(true);
             this._imagelist._form.setAcceptDrops(true);
@@ -291,6 +300,7 @@ public static class nsmp {
             shutil.rmtree(this._tmpinputfolder);
         }
         
+        //The hard things
         public virtual object go() {
             if (os.listdir(this._tmpinputfolder).Count == 0) {
                 return;
