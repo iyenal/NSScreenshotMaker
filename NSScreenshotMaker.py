@@ -26,15 +26,7 @@ from PIL import Image
 from AnyQt import QtCore
 from hashlib import sha256
 from datetime import datetime
-from pyforms.basewidget import BaseWidget
-from pyforms.controls   import ControlText
-from pyforms.controls   import ControlCombo
-from pyforms.controls   import ControlLabel
-from pyforms.controls   import ControlButton
-from pyforms.controls   import ControlCheckBox
-from pyforms.controls   import ControlFilesTree
-from pyforms.controls   import ControlDockWidget
-from AnyQt.QtWidgets    import QTreeView, QFileSystemModel
+#No need UI imports we will command that directly from a dotNet frontend
 
 games_json = {
 	"Home Menu (Default)": "57B4628D2267231D57E0FC1078C0596D",
