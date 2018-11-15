@@ -110,6 +110,7 @@ def processFile(fileName, key, titleID, baseOutputFolder, state = 0, secondFileP
 
 #Python UI is shit tbh let's get rid of that, we will refer directly to the main repo for that tldr
 
+
 class FirstRun(BaseWidget):
 	def __init__(self, *args, **kwargs):
 		BaseWidget.__init__(self, "First Run Popup")
@@ -184,15 +185,6 @@ class NSScreenshotMakerGUI(BaseWidget):
 	def closeEvent(self, event):
 		shutil.rmtree(self._tmpinputfolder)
 
-	def openSettings(self):
-		self._firstrunwin.close()
-		self._firstrunpanel.hide()
-		self._settingswin.close()
-		self._settingswin.parent = self
-		self._settingspanel.value = self._settingswin
-		self._settingspanel.show()
-		self._settingswin.show()
-
 	def go(self):
 		global settings_json
 		if len(os.listdir(self._tmpinputfolder)) == 0:
@@ -241,12 +233,6 @@ class NSScreenshotMakerGUI(BaseWidget):
 				processFile(self._tmpinputfolder + "/" + fileName, bytes.fromhex(settings_json["hmackey"]), settings_json["customgameid"], settings_json["outputfolder"])
 
 
-if __name__ == '__main__':
-	NSScreenshotMakerPath = appdirs.AppDirs("NSScreenshotMaker", "").user_data_dir
-	if not os.path.isdir(NSScreenshotMakerPath):
-		os.mkdir(NSScreenshotMakerPath)
-	if os.path.isfile(NSScreenshotMakerPath+"/settings.json"):
-		settings_json = json.load(open(NSScreenshotMakerPath+"/settings.json", "r"))
-	from pyforms import start_app
-	start_app(NSScreenshotMakerGUI)
+#Let's get to the gist of it directly, UWP is much better to handle UI
+	
 #くコ:彡
